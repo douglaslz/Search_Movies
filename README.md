@@ -1,6 +1,6 @@
 This project is created with ReactJs and using the api provider http://www.omdbapi.com/. 
 
-It is deploy in this server http://moviesweb.surge.sh/
+It is deploy on this server http://moviesweb.surge.sh/
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
