@@ -1,16 +1,24 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
+import {ButtonBackToHome} from '../components/ButtonBackToHome'
 
 const API_KEY = 'e160fd1c'
 export class Detail extends Component {
   static propTypes ={
-    id: PropTypes.string
+    //id: PropTypes.string
+
+    match:PropTypes.shape({
+      params: PropTypes.object,
+      isExact: PropTypes.bool,
+      path: PropTypes.string,
+      url:PropTypes.string
+    })
   }
 
   state =  { movie:{} }
 
-  _fetchMovie({id}){
-    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
+  _fetchMovie({movieId}){
+    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${movieId}`)
     .then(res => res.json())
     .then(movie =>{
       console.log({movie})
@@ -26,8 +34,10 @@ export class Detail extends Component {
   }
 
   componentDidMount(){
-    const {id} = this.props
-    this._fetchMovie({id})
+    //const {id} = this.props
+    console.log(this.props)
+    const {movieId} = this.props.match.params
+    this._fetchMovie({movieId})
   }
 
   render(){
@@ -35,7 +45,7 @@ export class Detail extends Component {
     return(
 
       <div>
-      <button onClick={this._goBack}>Go Back</button>
+      <ButtonBackToHome/>
       <h1>{Title}</h1>
       <img src={Poster} alt={Title}/>
       <h3>{Actors}</h3>
